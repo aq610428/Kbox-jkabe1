@@ -84,7 +84,7 @@ public final class SystemTools {
     }
 
 
-    public static LatLng getLatLng(double lat, double lon, Activity activity) {
+    public static LatLng getLatLng1(double lat, double lon, Activity activity) {
         LatLng latLng = null;
         try {
             CoordinateConverter converter = new CoordinateConverter(activity);
@@ -352,6 +352,13 @@ public final class SystemTools {
             e.printStackTrace();
         }
     }
+
+
+    public static LatLng getLatLng(double lat, double lon) {
+        double[] bdToGaoDe= bdToGaoDe(lat,lon);
+        return new LatLng(bdToGaoDe[1],bdToGaoDe[0]);
+    }
+
 
     public static double[] bdToGaoDe(double bd_lat, double bd_lon) {
         double[] gd_lat_lon = new double[2];

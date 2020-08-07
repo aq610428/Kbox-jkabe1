@@ -57,9 +57,10 @@ public class TraverAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_end_address).setText(travrt.getEndaddress());
         String one = SystemTools.mathKmOne(Integer.valueOf(travrt.getTripmileage())) +"KM";//"KM\n里程"
         String two = SystemTools.mathKmTwo(Integer.valueOf(travrt.getTripoil()))+"L"  ;//+ "L\n油耗"
-        vh.getTextView(R.id.text_l).setText(two+ "L");
-        vh.getTextView(R.id.text_hour).setText(travrt.getIdletime() + "H");
-        vh.getTextView(R.id.text_km).setText(one + "KM");
+        vh.getTextView(R.id.text_l).setText(two);
+        String time=SystemTools.mathMinute(Integer.valueOf(travrt.getTriptime()));
+        vh.getTextView(R.id.text_hour).setText(time+"");
+        vh.getTextView(R.id.text_km).setText(one);
 
         vh.getTextView(R.id.text_tab1).setText(travrt.getAccecount() + "次");
         vh.getTextView(R.id.text_tab2).setText(travrt.getDececount() + "次");

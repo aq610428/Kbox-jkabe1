@@ -26,6 +26,7 @@ import com.jkabe.app.android.config.okHttpModel;
 import com.jkabe.app.android.util.BigDecimalUtils;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.JsonParse;
+import com.jkabe.app.android.util.LogUtils;
 import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.SystemTools;
@@ -81,7 +82,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         text_satellite.setOnClickListener(this);
         text_line.setOnClickListener(this);
         title_right_tv.setOnClickListener(this);
-        title_right_tv.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_location, 0, 0, 0);
+        title_right_tv.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_map_location, 0, 0, 0);
     }
 
 
@@ -296,7 +297,8 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
 
 
     private void updateMap() {
-        LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()), this);
+        LatLng latLng=SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
+        LogUtils.e("lat="+latLng.latitude+"lon="+latLng.longitude);
         MarkerOptions markerOption = new MarkerOptions();
         markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));
         markerOption.position(latLng);
