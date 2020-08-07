@@ -28,7 +28,6 @@ import com.amap.api.location.CoordinateConverter;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
-import com.amap.api.maps.MapView;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
@@ -68,7 +67,9 @@ import com.jkabe.app.android.weight.RuntimeRationale;
 import com.jkabe.app.android.weight.SensorEventHelper;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
