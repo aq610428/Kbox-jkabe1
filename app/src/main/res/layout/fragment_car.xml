@@ -29,7 +29,7 @@
                 android:gravity="center|left"
                 android:text="绑定"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ctv_sizen_25"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <ImageView
