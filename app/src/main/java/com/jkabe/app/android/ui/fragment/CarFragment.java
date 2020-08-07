@@ -67,9 +67,7 @@ import com.jkabe.app.android.weight.RuntimeRationale;
 import com.jkabe.app.android.weight.SensorEventHelper;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
-
 import java.util.Map;
 
 /**
