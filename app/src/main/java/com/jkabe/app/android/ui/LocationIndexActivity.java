@@ -1,9 +1,8 @@
 package com.jkabe.app.android.ui;
 
-import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +25,6 @@ import com.jkabe.app.android.config.okHttpModel;
 import com.jkabe.app.android.util.BigDecimalUtils;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.JsonParse;
-import com.jkabe.app.android.util.LogUtils;
 import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.SystemTools;
@@ -34,7 +32,6 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -90,7 +87,10 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void initData() {
         qury();
         quryDeil();
+        mHandler.removeCallbacks(runnable);
+        mHandler.postDelayed(runnable,1000);
     }
+
 
     private void qury() {
         String sign = "imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
@@ -169,11 +169,11 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     }
 
     private void openMap() {
-       if (SystemTools.isInstallByread("com.autonavi.minimap")){
-           SystemTools.openGaoDeMap(Double.parseDouble(carVo.getLocationInfo().getLat()),Double.parseDouble(carVo.getLocationInfo().getLng()),carVo.getLocationInfo().getAddress(),this);
-       }else if (SystemTools.isInstallByread("com.baidu.BaiduMap")){
-           SystemTools.openBaiduMap(Double.parseDouble(carVo.getLocationInfo().getLat()),Double.parseDouble(carVo.getLocationInfo().getLng()),carVo.getLocationInfo().getAddress(),this);
-       }
+        if (SystemTools.isInstallByread("com.autonavi.minimap")) {
+            SystemTools.openGaoDeMap(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()), carVo.getLocationInfo().getAddress(), this);
+        } else if (SystemTools.isInstallByread("com.baidu.BaiduMap")) {
+            SystemTools.openBaiduMap(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()), carVo.getLocationInfo().getAddress(), this);
+        }
     }
 
 
@@ -181,6 +181,8 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
+        mHandler.removeCallbacks(runnable);
+
     }
 
     @Override
@@ -193,6 +195,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void onPause() {
         super.onPause();
         mapView.onPause();
+        mHandler.removeCallbacks(runnable);
     }
 
     @Override
@@ -247,17 +250,12 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             if (!Utility.isEmpty(ss)) {
                 String start = ss.substring(0, ss.length() - 8);
                 String end = ss.substring(ss.length() - 8, ss.length());
-
-
                 String start1 = ss1.substring(0, ss1.length() - 8);
                 String end2 = ss.substring(ss1.length() - 8, ss1.length());
                 text_date.setText("定位时间：" + start + " " + end);
                 text_gps.setText("车辆信号：" + start1 + " " + end2);
-
             }
-
             text_adress.setText("车辆位置：" + carVo.getLocationInfo().getAddress());
-            marker.showInfoWindow();
         }
     }
 
@@ -278,13 +276,13 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
                             updateView(vo);
                         }
                         break;
+
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
     }
-
 
     /*****设置车辆状态******/
     private void updateView(OdbAndLocationVO vo) {
@@ -295,17 +293,31 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
     }
 
-
+    Marker marker;
     private void updateMap() {
-        LatLng latLng=SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
-        LogUtils.e("lat="+latLng.latitude+"lon="+latLng.longitude);
-        MarkerOptions markerOption = new MarkerOptions();
-        markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));
-        markerOption.position(latLng);
-        Marker marker = aMap.addMarker(markerOption);
-        marker.showInfoWindow();
-        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+        LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
+        if (marker == null) {
+            MarkerOptions markerOption = new MarkerOptions();
+            markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));
+            markerOption.position(latLng);
+            marker = aMap.addMarker(markerOption);
+            marker.showInfoWindow();
+            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+        }else{
+            marker.setPosition(latLng);
+        }
     }
+
+
+    private Handler mHandler = new Handler();
+    private Runnable runnable = new Runnable() {
+        public void run () {
+            qury();
+            quryDeil();
+            mHandler.postDelayed(this,5000);
+        }
+    };
+
 
     @Override
     public void onFail() {

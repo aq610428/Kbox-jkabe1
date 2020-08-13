@@ -5,7 +5,9 @@ import android.content.Context;
 import com.jkabe.app.android.R;
 import com.jkabe.app.android.bean.StoreInfo;
 import com.jkabe.app.android.glide.GlideUtils;
+import com.jkabe.app.android.util.BigDecimalUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -34,6 +36,11 @@ public class StoreAdapter extends AutoRVAdapter {
         GlideUtils.CreateImageRound(infos.get(position).getLogo(), vh.getImageView(R.id.iv_photo), 5);
         vh.getTextView(R.id.tv_address).setText(info.getAddress());
         vh.getTextView(R.id.text_verify).setText(info.getPhone());
+        if (info.getDistance()>=1000){
+            vh.getTextView(R.id.text_distance).setText(BigDecimalUtils.div(new BigDecimal(info.getDistance()),new BigDecimal(1000),2) + "km");
+        }else{
+            vh.getTextView(R.id.text_distance).setText(info.getDistance() + "m");
+        }
 
     }
 

@@ -3,11 +3,18 @@ package com.jkabe.app.android.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.jkabe.app.android.R;
 import com.jkabe.app.android.adapter.HealthAdapter;
 import com.jkabe.app.android.base.BaseActivity;
@@ -17,6 +24,7 @@ import com.jkabe.app.android.bean.HealthProjectVO;
 import com.jkabe.app.android.config.Api;
 import com.jkabe.app.android.config.NetWorkListener;
 import com.jkabe.app.android.config.okHttpModel;
+import com.jkabe.app.android.glide.GlideUtils;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.JsonParse;
 import com.jkabe.app.android.util.Md5Util;
@@ -44,6 +52,7 @@ public class MedicalActivity extends BaseActivity implements NetWorkListener {
     private RecyclerView recyclerView;
     private Handler mHandler = new Handler();
     private Runnable runnable;
+    private ImageView iv_car;
 
 
     @Override
@@ -59,12 +68,24 @@ public class MedicalActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
+        iv_car = getView(R.id.iv_car);
         text_begin = getView(R.id.text_begin);
         text_work = getView(R.id.text_work);
         title_left_btn = getView(R.id.title_left_btn);
         recyclerView = getView(R.id.recyclerView);
         title_left_btn.setOnClickListener(this);
         text_begin.setOnClickListener(this);
+        Glide.with(this).load(R.drawable.icon_gif).listener(new RequestListener() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target target, boolean isFirstResource) {
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Object resource, Object model, Target target, DataSource dataSource, boolean isFirstResource) {
+                return false;
+            }
+        }).into(iv_car);
     }
 
     @Override
@@ -137,13 +158,25 @@ public class MedicalActivity extends BaseActivity implements NetWorkListener {
                 } else {
                     adapter.endLaunch();
                     mHandler.removeCallbacks(runnable);
-                    text_work.setText("检测已完成");
+                    if (Utility.isEmpty(adapter.msg)){
+                        ToastUtil.showSnackbar(text_begin, "您的车辆检测已完成，车辆无故障");
+                    }else{
+                        ToastUtil.showSnackbar(text_begin, "您的车辆检测已完成，车辆异常"+adapter.msg);
+                    }
+
                     return;
                 }
                 mHandler.postDelayed(this, 600);
             }
         };
         mHandler.post(runnable);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlideUtils.clearImageMemoryCache(this);
     }
 
 

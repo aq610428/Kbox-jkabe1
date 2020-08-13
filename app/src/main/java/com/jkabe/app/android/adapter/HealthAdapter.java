@@ -1,6 +1,5 @@
 package com.jkabe.app.android.adapter;
 
-import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +18,7 @@ import java.util.List;
 public class HealthAdapter extends AutoRVAdapter {
     private List<HealthProjectVO> list;
     private MedicalActivity activity;
+    public String msg = "";
 
     public HealthAdapter(MedicalActivity activity, List<HealthProjectVO> list) {
         super(activity, list);
@@ -51,6 +51,7 @@ public class HealthAdapter extends AutoRVAdapter {
                 text_success.setText("正常");
                 vh.getTextView(R.id.text_abnormal).setVisibility(View.GONE);
             } else {
+                msg = vo.getValue();
                 text_success.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_fail, 0, 0, 0);
                 text_success.setText("异常");
                 vh.getTextView(R.id.text_abnormal).setVisibility(View.VISIBLE);
@@ -70,12 +71,7 @@ public class HealthAdapter extends AutoRVAdapter {
 
     public void endLaunch() {
         list.get(list.size() - 2).setStats(2);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                list.get(list.size() - 1).setStats(2);
-            }
-        },600);
+        list.get(list.size() - 1).setStats(2);
         notifyDataSetChanged();
     }
 }

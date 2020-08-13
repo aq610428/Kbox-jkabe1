@@ -173,7 +173,7 @@ public class StoreActivity extends BaseActivity implements OnLoadMoreListener, N
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(StoreActivity.this, StoreDeilActivity.class);
-                intent.putExtra("storeInfo", voList.get(position));
+                intent.putExtra("storeInfo", infos.get(position));
                 startActivity(intent);
             }
         });

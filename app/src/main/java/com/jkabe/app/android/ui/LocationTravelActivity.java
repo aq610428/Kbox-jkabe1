@@ -172,7 +172,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         readLatLngs = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             LatInfo info = list.get(i);
-            LatLng latLng = SystemTools.getLatLng(Double.parseDouble(info.getLat()), Double.parseDouble(info.getLng()));
+            LatLng latLng = SystemTools.getLatLng(Double.parseDouble(info.getBaidulat()), Double.parseDouble(info.getBaidulng()));
             readLatLngs.add(latLng);
         }
         addPolylineInPlayGround();
