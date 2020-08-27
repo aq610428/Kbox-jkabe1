@@ -301,11 +301,11 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));
             markerOption.position(latLng);
             marker = aMap.addMarker(markerOption);
-            marker.showInfoWindow();
-            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
         }else{
             marker.setPosition(latLng);
         }
+        marker.showInfoWindow();
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
     }
 
 

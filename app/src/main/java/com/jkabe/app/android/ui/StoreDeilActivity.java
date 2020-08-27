@@ -125,7 +125,7 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
                 if (distance >= 1000) {
                     text_distance.setText(BigDecimalUtils.div(new BigDecimal(distance), new BigDecimal(1000), 2) + "km");
                 } else {
-                    text_distance.setText(storeInfo.getDistance() + "m");
+                    text_distance.setText(dis+ "m");
                 }
             }
             quryDeil();
