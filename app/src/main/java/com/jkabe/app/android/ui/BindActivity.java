@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
-
 import com.jkabe.app.android.R;
 import com.jkabe.app.android.base.BaseActivity;
 import com.jkabe.app.android.bean.CommonalityModel;
@@ -27,9 +25,7 @@ import com.jkabe.app.android.weight.VehicleKeyboardHelper;
 import com.jkabe.app.android.zxing.android.CaptureActivity;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
-
 import java.util.Map;
 
 /**
@@ -115,11 +111,11 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
                 if (str != null && str.length == 2) {
                     cardName.setText(str[0]);
                     et_code.setText(str[1]);
+                }else if (str!=null&&str.length==1){
+                    cardName.setText(str[0]);
+                    et_code.setText("1234");
                 }
-
-
             }
-
             LogUtils.e("解码结果： \n" + content);
         }
     }
@@ -240,11 +236,11 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     public void onFail() {
-
+        stopProgressDialog();
     }
 
     @Override
     public void onError(Exception e) {
-
+        stopProgressDialog();
     }
 }
