@@ -116,6 +116,24 @@
                 android:textColor="@color/black33"
                 android:textSize="14sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+            <TextView
+                android:id="@+id/text_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@mipmap/ico_speed"
+                android:drawableRight="@mipmap/icon_right"
+                android:drawablePadding="6dp"
+                android:gravity="center|left"
+                android:padding="15dp"
+                android:text="流量查询"
+                android:textColor="@color/black33"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"

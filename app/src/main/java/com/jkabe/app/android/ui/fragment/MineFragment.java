@@ -32,6 +32,7 @@ import com.jkabe.app.android.ui.AboutActivity;
 import com.jkabe.app.android.ui.BindActivity;
 import com.jkabe.app.android.ui.InvitationActivity;
 import com.jkabe.app.android.ui.LoginActivity;
+import com.jkabe.app.android.ui.PassworadActivity;
 import com.jkabe.app.android.ui.PreviewActivity;
 import com.jkabe.app.android.ui.UserActivity;
 import com.jkabe.app.android.ui.VehicleActivity;
@@ -62,7 +63,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class MineFragment extends BaseFragment implements View.OnClickListener, NetWorkListener {
     private View rootView;
-    private TextView text_name, text_edit, text_invitation, text_code, text_contacts, text_bind, text_car, text_about, text_out;
+    private TextView text_name, text_edit, text_invitation, text_code, text_contacts, text_bind, text_car, text_about, text_out,text_pass;
     private UserInfo info;
     private ImageView icon_head;
 
@@ -94,6 +95,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
 
     private void initView() {
+        text_pass= getView(rootView, R.id.text_pass);
         icon_head = getView(rootView, R.id.icon_head);
         text_name = getView(rootView, R.id.text_name);
         text_edit = getView(rootView, R.id.text_edit);
@@ -113,7 +115,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         text_about.setOnClickListener(this);
         text_edit.setOnClickListener(this);
         text_bind.setOnClickListener(this);
-
+        text_pass.setOnClickListener(this);
         CarInfo carInfo = SaveUtils.getCar();
         if (carInfo != null) {
             text_bind.setVisibility(View.VISIBLE);
@@ -147,6 +149,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
             case R.id.text_invitation:
                 startActivity(new Intent(getContext(), InvitationActivity.class));
+                break;
+            case R.id.text_pass:
+                startActivity(new Intent(getContext(), PassworadActivity.class));
                 break;
             case R.id.text_code:
                 checkPermission();

@@ -20,11 +20,13 @@ import com.jkabe.app.android.bean.Money;
 import com.jkabe.app.android.bean.OdbAndLocationVO;
 import com.jkabe.app.android.bean.Oil;
 import com.jkabe.app.android.bean.OrderInfo;
+import com.jkabe.app.android.bean.PackageBean;
 import com.jkabe.app.android.bean.StoreInfo;
 import com.jkabe.app.android.bean.Travrt;
 import com.jkabe.app.android.bean.UserInfo;
 import com.jkabe.app.android.bean.Verison;
 import com.jkabe.app.android.bean.YearCar;
+import com.jkabe.app.android.bean.icadBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +49,23 @@ public class JsonParse {
         if (jsonParse == null)
             jsonParse = new JsonParse();
         return jsonParse;
+    }
+
+
+    public static icadBean getJSONicon(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        icadBean info = (icadBean) JsonUtilComm.jsonToBean(jsonObject.toString(), icadBean.class);
+        return info;
+    }
+
+    public static List<PackageBean> getStoreListJson(JSONObject object) {
+        List<PackageBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            PackageBean info = (PackageBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), PackageBean.class);
+            infos.add(info);
+        }
+        return infos;
     }
 
     public static Verison getVerisonUserInfo(JSONObject object) {

@@ -37,19 +37,29 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/text_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="540dp"
+        android:gravity="center"
+        android:text="我的邀请码："
+        android:textColor="@color/black33"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/icon_code"
             android:layout_width="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:src="@mipmap/xcc" />
 
     </LinearLayout>

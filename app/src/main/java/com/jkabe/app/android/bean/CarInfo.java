@@ -9,6 +9,14 @@ import java.io.Serializable;
  */
 public class CarInfo implements Serializable {
 
+    public String getIccid() {
+        return iccid;
+    }
+
+    public void setIccid(String iccid) {
+        this.iccid = iccid;
+    }
+
     /**
      * id : 7dbfc1421e764dcdb7ddf5862d93038d
      * imeicode : 201902000673
@@ -29,7 +37,7 @@ public class CarInfo implements Serializable {
      * isreal : 2
      * descriptionToString : {"factory":"车品牌名称","engineno":"发动机号","tripcard":"行驶证","business":"厂商名称","yearmodel":"年款名称","bodycolor":"车身颜色","imeicode":"设备号","carcard":"车牌号","simcode":"sim卡号","vinno":"车架号","initmileage":"当前里程","createTime":"创建时间","model":"车型名称","id":"车辆id","playcarddate":"上牌日期","isreal":"是否已认证 0 未认证 1 已认证 2 审核中 3 审核失败","enginetype":"发动机类型"}
      */
-
+    private String iccid;
     private String id;
     private String imeicode;
     private String simcode;

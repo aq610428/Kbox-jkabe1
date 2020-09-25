@@ -205,4 +205,13 @@ public interface Api {
     int GET_UNMODEL_INFO_ID = 100072;
     String RESET_TOKEN = Config.getOpenNewApi() + "/member/getAuthToken";
     int RESET_TOKEN_ID = 100084;
+
+    String RESET_FLOW_DEVICE = Config.getOpenNewApi() + "/flow/getTerminalDetail";
+    int RESET_FLOW_DEVICEE_ID = 100087;
+
+    String RESET_FLOW_List = Config.getOpenNewApi() + "/flow/getRenewalsPackageList";
+    int RESET_FLOW_List_ID = 100088;
+
+    String RESET_FLOW_CODE = Config.getOpenNewApi() + "/flow/getPackageQrcode";
+    int RESET_FLOW_CODE_ID = 100089;
 }

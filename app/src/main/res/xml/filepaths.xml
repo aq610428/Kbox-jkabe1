@@ -21,6 +21,7 @@
         <external-cache-path name="mq_external_cache" path="" />
 
         <root-path name="mq_external_cache" path="" />
+        <external-path path="." name="ccb_xls" />
     </paths>
 
 </resources>

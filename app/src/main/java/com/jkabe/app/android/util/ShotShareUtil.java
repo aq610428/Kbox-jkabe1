@@ -10,8 +10,6 @@ import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.wechat.friends.Wechat;
 
 import static com.jkabe.app.android.util.MeasureWidthUtils.getScreenHeight;
 import static com.jkabe.app.android.util.MeasureWidthUtils.getScreenWidth;
@@ -21,10 +19,6 @@ public class ShotShareUtil {
     public static void shotShare(Activity context){
         //截屏
         String path=screenShot(context);
-        //分享
-        if(!Utility.isEmpty(path)){
-            sharewxFriends(context,path);
-        }
     }
 
     /**获取截屏**/
@@ -65,13 +59,7 @@ public class ShotShareUtil {
         }
     }
 
-    private static void sharewxFriends(Context context,String imagePath){
-            OnekeyShare oks = new OnekeyShare();
-            oks.setPlatform(Wechat.NAME);
-            oks.setImagePath(imagePath);
-            oks.show(context);
 
-    }
     /**
      * 获取当前屏幕截图，不包含状态栏
      */

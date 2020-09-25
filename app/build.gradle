@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mob.sdk'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.jkabe.app.android"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 43
-        versionName "v2.0.1"
+        targetSdkVersion 29
+        versionCode 44
+        versionName "v2.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
         multiDexEnabled true
@@ -56,7 +55,7 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${variant.productFlavors[0].name}.apk"
+            outputFileName = "release_bar_${variant.versionName}.apk"
         }
     }
 
@@ -119,22 +118,3 @@ dependencies {
     implementation 'noman.weekcalendar:weekcalendar:1.0.6'
 }
 
-MobSDK {
-    //卡贝配置
-    appKey "2ca99ecb99edc"
-    appSecret "8747b174ebfb3f4af6d13ebdab822cec"
-    ShareSDK {
-        loopShare true
-        devInfo {
-            Wechat {
-                appId "wxb9f11b72eaba96df"
-                appSecret "2d169e44ea612f1b5f3037ce9f272bd3"
-                shareByAppClient true
-                userName "gh_afb25ac019c9"
-                path "pages/index/index.html?id=1"
-                withShareTicket true
-                miniprogramType 3
-            }
-        }
-    }
-}

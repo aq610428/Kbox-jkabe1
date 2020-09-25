@@ -104,6 +104,7 @@ public class OilActivity extends BaseActivity implements NetWorkListener {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String price = text_price.getText().toString();
                 if (!Utility.isEmpty(price)) {
+                    price=price.replaceAll("元","");
                     PreferenceUtils.setPrefString(OilActivity.this, Constants.OIL, price);
                     if (oil != null) {
                         updateView();
