@@ -43,7 +43,7 @@ public class EarlyAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_name).setText(electronic.getTitle());
         vh.getTextView(R.id.text_name).setText(electronic.getTitle());
         vh.getTextView(R.id.text_brand).setText(electronic.getContent());
-        String ss = electronic.getStringgpstime();
+        String ss = electronic.getStringCreateTime();
         if (!Utility.isEmpty(ss)) {
             String start = ss.substring(0, ss.length() - 8);
             String end = ss.substring(ss.length() - 8, ss.length());

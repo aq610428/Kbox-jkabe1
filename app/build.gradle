@@ -7,8 +7,8 @@ android {
         applicationId "com.jkabe.app.android"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 44
-        versionName "v2.0.2"
+        versionCode 46
+        versionName "2.0.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
         multiDexEnabled true

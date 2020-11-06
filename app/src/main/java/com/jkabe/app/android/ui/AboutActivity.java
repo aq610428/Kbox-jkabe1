@@ -57,7 +57,7 @@ public class AboutActivity extends BaseActivity implements NetWorkListener {
         title_text_tv.setText("关于我们");
         rl_edition.setOnClickListener(this);
         rl_tab.setOnClickListener(this);
-        text_edition.setText("当前版本 v" + SystemTools.getAppVersionName(this));
+        text_edition.setText("当前版本v " + SystemTools.getAppVersionName(this));
         rl_tab1.setOnClickListener(this);
     }
 

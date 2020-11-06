@@ -136,7 +136,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 startActivity(new Intent(getContext(), UserActivity.class));
                 break;
             case R.id.text_car:
-                if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getSimcode())) {
+                if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getImeicode())) {
                     startActivity(new Intent(getContext(), VehicleActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), BindActivity.class));

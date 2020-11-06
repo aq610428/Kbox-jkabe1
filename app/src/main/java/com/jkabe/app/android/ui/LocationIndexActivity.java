@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
-
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
@@ -30,7 +29,6 @@ import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.SystemTools;
 import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
-
 import org.json.JSONObject;
 import java.math.BigDecimal;
 import java.util.Map;
@@ -287,10 +285,28 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     /*****设置车辆状态******/
     private void updateView(OdbAndLocationVO vo) {
         text_bat.setText(Utility.judgeStrState(vo.getLocationdata().getSpeed() + "km/h", "--"));
-        text_temper.setText(vo.getObddata().getControl_module_voltage() + "V");
-        text_load.setText(vo.getObddata().getLoad_calculation_value() + "%");
-        text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
-        text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
+        if (!Utility.isEmpty(vo.getObddata().getControl_module_voltage())) {
+            text_temper.setText(BigDecimalUtils.round(new BigDecimal(vo.getObddata().getControl_module_voltage()), 2) + "V");
+        } else {
+            text_temper.setText("--");
+        }
+        if (!Utility.isEmpty(vo.getObddata().getLoad_calculation_value())){
+            text_load.setText(vo.getObddata().getLoad_calculation_value() + "%");
+        }else{
+            text_load.setText("--");
+        }
+
+        if (!Utility.isEmpty(vo.getObddata().getEngine_speed())){
+            text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
+        }else{
+            text_speed.setText("--");
+        }
+
+        if (!Utility.isEmpty(vo.getObddata().getEngine_speed())){
+            text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
+        }else{
+            text_voltage.setText("--");
+        }
     }
 
     Marker marker;

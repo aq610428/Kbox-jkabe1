@@ -170,10 +170,15 @@ public class OilActivity extends BaseActivity implements NetWorkListener {
         text_mean.setText(oil.getAvgoil());
         String price = PreferenceUtils.getPrefString(OilActivity.this, Constants.OIL, "");
         if (!Utility.isEmpty(price)) {
-            String spend = BigDecimalUtils.mul(new BigDecimal(oil.getOils()), new BigDecimal(price)).toPlainString();
-            text_tel.setText(BigDecimalUtils.round(new BigDecimal(spend),2).toPlainString() + "元");
-            BigDecimal spen = BigDecimalUtils.div(new BigDecimal(oil.getOils()), new BigDecimal(oil.getMileage()), 2);
-            text_cost.setText(BigDecimalUtils.round(BigDecimalUtils.mul(spen, new BigDecimal(price)),2) + "元/公里");
+            if ("0".equals(oil.getOils()+"")){
+                text_tel.setText("0元");
+                text_cost.setText("0元/公里");
+            }else{
+                String spend = BigDecimalUtils.mul(new BigDecimal(oil.getOils()), new BigDecimal(price)).toPlainString();
+                text_tel.setText(BigDecimalUtils.round(new BigDecimal(spend),2).toPlainString() + "元");
+                BigDecimal spen = BigDecimalUtils.div(new BigDecimal(oil.getOils()), new BigDecimal(oil.getMileage()), 2);
+                text_cost.setText(BigDecimalUtils.round(BigDecimalUtils.mul(spen, new BigDecimal(price)),2) + "元/公里");
+            }
         }
 
         ArrayList<BarEntry> yValues = new ArrayList<>();

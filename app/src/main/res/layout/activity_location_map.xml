@@ -63,11 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:gravity="center"
             android:layout_marginBottom="3dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/icon_temper"
@@ -78,8 +79,8 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/ico_load"
                 android:drawablePadding="5dp"
@@ -89,8 +90,8 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/ico_speed"
                 android:drawablePadding="5dp"
@@ -100,8 +101,8 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/ico_voltage"
                 android:drawablePadding="5dp"
@@ -117,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -132,7 +134,7 @@
             <TextView
                 android:id="@+id/text_load"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="负荷"
@@ -142,7 +144,7 @@
             <TextView
                 android:id="@+id/text_speed"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="转速"
@@ -152,7 +154,7 @@
             <TextView
                 android:id="@+id/text_voltage"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="温度"

@@ -2,6 +2,9 @@ package com.jkabe.app.android.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.webkit.WebView;
+
 import androidx.multidex.MultiDex;
 import com.jkabe.app.android.weight.ActivityTaskManager;
 import com.lzy.okgo.OkGo;
@@ -18,6 +21,7 @@ public class BaseApplication extends Application {
     public static Context myContext;
     public static BaseApplication baseApplicition;
     public static ActivityTaskManager activityTaskManager;
+    private static final String PROCESSNAME = "com.jkabe.app.android";
 
     @Override
     public void onCreate() {
@@ -28,6 +32,7 @@ public class BaseApplication extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleListener());
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        initWebView();
     }
 
 
@@ -54,6 +59,14 @@ public class BaseApplication extends Application {
 //                .addCommonHeaders(headers);
     }
 
+    private void initWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName();
+            if (!PROCESSNAME.equals(processName)) {
+                WebView.setDataDirectorySuffix(getString(Integer.parseInt(processName), "zyb"));
+            }
+        }
+    }
 
     /**
      * 返回全局context对象cx

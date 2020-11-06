@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
     protected void initView() {
         mTabHost = getView(R.id.mTabHost);
         queryPush();
+        query();
     }
 
     @Override
@@ -179,6 +180,19 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         params.put("registerid", registrationID + "");
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_PUSH_VERSION, params, Api.GET_PUSH_VERSION_ID, this);
+    }
+
+
+    /*******查询首页数据
+     * @param ********/
+    public void query() {
+        String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(this, false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GET_INTERGRAL_VERSION, params, Api.GET_INTERGRAL_VERSION_ID, this);
     }
 
 
