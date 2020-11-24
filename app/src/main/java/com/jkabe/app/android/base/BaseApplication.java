@@ -1,15 +1,16 @@
 package com.jkabe.app.android.base;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.webkit.WebView;
-
 import androidx.multidex.MultiDex;
 import com.jkabe.app.android.weight.ActivityTaskManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.https.HttpsUtils;
+import com.tencent.bugly.Bugly;
 import java.util.concurrent.TimeUnit;
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
@@ -33,6 +34,8 @@ public class BaseApplication extends Application {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         initWebView();
+
+        Bugly.init(getApplicationContext(), "ba35f6a4fc", false);
     }
 
 
@@ -56,17 +59,29 @@ public class BaseApplication extends Application {
                 .setCacheTime(24 * 60 * 60)   //全局统一缓存时间，默认永不过期，可以不传
                 .setRetryCount(3); //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
 
-//                .addCommonHeaders(headers);
     }
 
     private void initWebView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            String processName = getProcessName();
+            String processName = getProcessName(this);
             if (!PROCESSNAME.equals(processName)) {
-                WebView.setDataDirectorySuffix(getString(Integer.parseInt(processName), "zyb"));
+                WebView.setDataDirectorySuffix(processName);
             }
         }
     }
+
+    public  String getProcessName(Context context) {
+        if (context == null) return null;
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
+            if (processInfo.pid == android.os.Process.myPid()) {
+                return processInfo.processName;
+            }
+        }
+        return null;
+    }
+
+
 
     /**
      * 返回全局context对象cx
