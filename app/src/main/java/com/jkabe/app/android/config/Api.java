@@ -16,7 +16,9 @@ public interface Api {
     /******车生活三方服务列表信息******/
     String GET_ADVERT_TAG = Config.getOpenNewApi() + "/resource/gettaglist";
     int GET_ADVERT_TAG_ID = 100004;
-
+    //加入购物车
+    String GOODD_MALL_QUERY = Config.getOpenNewApi() + "/mall/queryMallShoppingData";
+    int GOODD_MALL_QUERY_ID = 20003;
 
     /******虚拟货币列表******/
     String GET_COINS_LIST = Config.getOpenNewApi() + "/integral/getcoins";
@@ -29,7 +31,9 @@ public interface Api {
     /******登录******/
     String GET_LOGIN = Config.getOpenNewApi() + "/member/memberlogin";
     int GET_LOGIN_ID = 100003;
-
+    //查看物流
+    String PAY_REMOVE_INFO = Config.getOpenNewApi() + "/member/getDefaultMemberReceiveAddressInfoById";
+    int PAY_REMOVE_INFO_ID = 20022;
 
     /******获取验证码******/
     String GET_MOBILCODE = Config.getOpenNewApi() + "/member/getmembermobilevcode";
@@ -214,4 +218,39 @@ public interface Api {
 
     String RESET_FLOW_CODE = Config.getOpenNewApi() + "/flow/getPackageQrcode";
     int RESET_FLOW_CODE_ID = 100089;
+
+
+    //修改购物车商品数量
+    String PAY_ORDER_NUW = Config.getOpenNewApi() + "/mall/updateShoppingNum";
+    int PAY_ORDER_NUW_ID = 20014;
+
+
+    //购物车删除
+    String MallGood_REMOVE = Config.getOpenNewApi() + "/mall/removeMallShoppingInfo";
+    int MallGood_REMOVE_ID = 20005;
+
+    //取消订单
+    String CANCAL_ORDER_LIST = Config.getOpenNewApi() + "/mall/cancalMallOrderInfo";
+    int CANCAL_ORDER_LIST_ID = 20011;
+
+    //取消订单
+    String PAY_ORDER_LIST = Config.getOpenNewApi() + "/mall/gotoPayOrderInfo";
+    int PAY_ORDER_LIST_ID = 20012;
+
+    //直接生成订单
+    String PAY_ORDER_NOW = Config.getOpenNewApi() + "/mall/buyNowOrderInfo";
+    int PAY_ORDER_NOW_ID = 20013;
+
+
+    //新增订单
+    String MallGood_PAY_SAVE = Config.getOpenNewApi() + "/mall/saveMallOrderInfo";
+    int MallGood_PAY_SAVE_ID = 20007;
+
+    //新增收货地址
+    String MallGood_ADDRESS = Config.getOpenNewApi() + "/member/saveMemberReceiveAddressInfo";
+    int MallGood_ADDRESS_ID = 20008;
+
+    //收货地址列表
+    String MallGood_ADDRESS_LIST = Config.getOpenNewApi() + "/member/queryMemberReceiveAddressInfoData";
+    int MallGood_ADDRESS_LIST_ID = 20009;
 }

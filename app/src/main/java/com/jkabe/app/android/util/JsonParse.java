@@ -1,5 +1,6 @@
 package com.jkabe.app.android.util;
 
+import com.jkabe.app.android.bean.AddressBean;
 import com.jkabe.app.android.bean.BannerVo;
 import com.jkabe.app.android.bean.Battery;
 import com.jkabe.app.android.bean.Brand;
@@ -9,6 +10,7 @@ import com.jkabe.app.android.bean.CarRulesItemVO;
 import com.jkabe.app.android.bean.CarRulesVO;
 import com.jkabe.app.android.bean.CarSafeVO;
 import com.jkabe.app.android.bean.CarVo;
+import com.jkabe.app.android.bean.CartBean;
 import com.jkabe.app.android.bean.CommonalityModel;
 import com.jkabe.app.android.bean.EarlyInfo;
 import com.jkabe.app.android.bean.Electronic;
@@ -21,6 +23,7 @@ import com.jkabe.app.android.bean.OdbAndLocationVO;
 import com.jkabe.app.android.bean.Oil;
 import com.jkabe.app.android.bean.OrderInfo;
 import com.jkabe.app.android.bean.PackageBean;
+import com.jkabe.app.android.bean.PayBean;
 import com.jkabe.app.android.bean.StoreInfo;
 import com.jkabe.app.android.bean.Travrt;
 import com.jkabe.app.android.bean.UserInfo;
@@ -51,6 +54,29 @@ public class JsonParse {
         return jsonParse;
     }
 
+    public static AddressBean getAddressBeanJSON(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonObject.toString(), AddressBean.class);
+        return info;
+    }
+
+
+    public static List<AddressBean> getAddressBeanJson(JSONObject object) {
+        List<AddressBean> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), AddressBean.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static PayBean getPayJson(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        PayBean info = (PayBean) JsonUtilComm.jsonToBean(jsonObject.toString(), PayBean.class);
+        return info;
+    }
 
     public static icadBean getJSONicon(JSONObject object) {
         JSONObject jsonObject = object.optJSONObject("result");
@@ -93,7 +119,17 @@ public class JsonParse {
         return infos;
     }
 
+    public static List<CartBean> getCartBeanJson(JSONObject object) {
 
+        List<CartBean> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            CartBean info = (CartBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), CartBean.class);
+            infos.add(info);
+        }
+        return infos;
+    }
 
     public static List<Money> getBespokemoniesJson(JSONObject object) {
         List<Money> infos = new ArrayList<>();

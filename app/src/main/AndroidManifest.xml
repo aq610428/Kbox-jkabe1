@@ -191,9 +191,25 @@
             android:name=".ui.StoreDeilActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.ConfirmActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".ui.AddressActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.AddressListActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="1c2f84bc2c874052182ada0a02c49649" />
+
+
+
 
         <service android:name="com.amap.api.location.APSService"></service>
 
@@ -301,6 +317,14 @@
             android:authorities="${applicationId}.DataProvider"
             android:exported="false"
             android:process=":pushcore" />
+
+
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
     </application>
 
 </manifest>

@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 
 /**
  * @类名: SystemTools<br>
@@ -39,6 +41,17 @@ import java.util.regex.Pattern;
  */
 public final class SystemTools {
 
+    /**
+     * 隐藏键盘
+     */
+    public static void hideInput(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
+        View v = activity.getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+
+    }
     /**
      *
      * @return
