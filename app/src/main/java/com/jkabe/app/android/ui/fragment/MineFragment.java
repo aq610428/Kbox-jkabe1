@@ -74,7 +74,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_mine, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -124,10 +123,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         }
     }
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     public void onClick(View v) {

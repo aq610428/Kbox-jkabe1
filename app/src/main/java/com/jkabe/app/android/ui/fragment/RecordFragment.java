@@ -61,7 +61,6 @@ public class RecordFragment extends BaseFragment implements View.OnClickListener
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_record, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -112,10 +111,6 @@ public class RecordFragment extends BaseFragment implements View.OnClickListener
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     public void onClick(View v) {
