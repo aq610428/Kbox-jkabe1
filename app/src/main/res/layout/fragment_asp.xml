@@ -85,9 +85,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_height="wrap_content" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -120,8 +118,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@color/white"
-                        android:gravity="center"
                         android:drawableLeft="@mipmap/ic_recom"
+                        android:gravity="center"
                         android:textColor="#F0F0F0"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -134,6 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="14dp"
                     android:clipToPadding="false" />
             </LinearLayout>

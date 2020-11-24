@@ -216,9 +216,6 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.GET_PUSH_VERSION_ID:
-                        ToastUtil.showToast(commonality.getErrorDesc());
-                        break;
                     case Api.GET_INTERGRAL_VERSION_ID:
                         verison = JsonParse.getVerisonUserInfo(object);
                         if (verison != null) {

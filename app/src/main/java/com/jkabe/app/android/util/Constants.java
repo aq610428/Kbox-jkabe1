@@ -1,6 +1,12 @@
 package com.jkabe.app.android.util;
 
 
+import com.jkabe.app.android.R;
+import com.jkabe.app.android.bean.Block;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Constants {
     public static final String APP_ID = "wxdebf49e4963895e1";
     public static String SUCESSCODE = "EXECUTE_SUCCESS";
@@ -15,4 +21,15 @@ public class Constants {
     public static final String TOKEN = "token";//车油惠
     public static String ADVER = "1";//区分权限
     public static final String CATEGORYA = "3736cc5daf354098ab3ef3e33e581376";//车油惠
+
+
+    public static List<Block> getblocks() {
+        List<Block> blocks = new ArrayList<>();
+        blocks.add(new Block("数码电器", R.mipmap.ic_television_3));
+        blocks.add(new Block("食品粮油", R.mipmap.ic_television_2));
+        blocks.add(new Block("服饰箱包", R.mipmap.ic_television_1));
+        blocks.add(new Block("钟表珠宝", R.mipmap.ic_television_4));
+        blocks.add(new Block("日用百货", R.mipmap.ic_television_5));
+        return blocks;
+    }
 }

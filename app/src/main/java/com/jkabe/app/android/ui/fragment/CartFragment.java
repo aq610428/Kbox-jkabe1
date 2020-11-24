@@ -67,6 +67,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_cart, container, false);
             initView();
+            query();
         }
         return rootView;
     }
@@ -77,8 +78,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
-        cancelAll();
-        query();
     }
 
 

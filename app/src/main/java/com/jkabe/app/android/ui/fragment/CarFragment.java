@@ -82,15 +82,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     private AMapLocationClientOption mLocationOption;
     private boolean mFirstFix = false;
     private SensorEventHelper mSensorHelper;
-    private static String BACK_LOCATION_PERMISSION = "android.permission.ACCESS_BACKGROUND_LOCATION";
-    protected String[] needPermissions = {
-            Permission.ACCESS_COARSE_LOCATION,
-            Permission.ACCESS_FINE_LOCATION,
-            Permission.WRITE_EXTERNAL_STORAGE,
-            Permission.READ_EXTERNAL_STORAGE,
-            Permission.READ_PHONE_STATE,
-            BACK_LOCATION_PERMISSION
-    };
     private CarInfo carInfo;
     private TextView text_num, text_attery, text_electronic;
     private CarVo carVo;
@@ -116,7 +107,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
 
     private void request() {
-        AndPermission.with(this).runtime().permission(needPermissions)
+        AndPermission.with(this).runtime().permission(Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE)
                 .rationale(new RuntimeRationale())
                 .onGranted(permissions -> setUpMap())
                 .onDenied(permissions -> {

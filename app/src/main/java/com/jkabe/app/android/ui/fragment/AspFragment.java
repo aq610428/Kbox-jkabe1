@@ -17,6 +17,7 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.android.R;
+import com.jkabe.app.android.adapter.MeAdapter;
 import com.jkabe.app.android.adapter.WareAdapter;
 import com.jkabe.app.android.adapter.WareAdapter2;
 import com.jkabe.app.android.banner.Banner2;
@@ -25,6 +26,7 @@ import com.jkabe.app.android.banner.Transformer;
 import com.jkabe.app.android.banner.listener.OnBannerListener;
 import com.jkabe.app.android.base.BaseFragment;
 import com.jkabe.app.android.bean.BannerVo;
+import com.jkabe.app.android.bean.Block;
 import com.jkabe.app.android.bean.CommonalityModel;
 import com.jkabe.app.android.bean.GoodBean;
 import com.jkabe.app.android.config.Api;
@@ -58,11 +60,13 @@ public class AspFragment extends BaseFragment implements OnBannerListener, NetWo
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView recyclerView, recyclerView1;
     private List<BannerVo> banners = new ArrayList<>();
+    private List<Block> data = new ArrayList<>();
     private WareAdapter wareAdapter;
     private List<GoodBean> list = new ArrayList<>();
     private int page = 1;
     private int limit = 10000;
     private boolean isRefresh;
+    private MeAdapter adapter;
 
 
     @Nullable
@@ -91,8 +95,12 @@ public class AspFragment extends BaseFragment implements OnBannerListener, NetWo
         swipeToLoadLayout.setOnLoadMoreListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
 
+        data = Constants.getblocks();
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 5);
         recyclerView.setLayoutManager(layoutManager);
+        adapter = new MeAdapter(getContext(), data);
+        recyclerView.setAdapter(adapter);
+
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView1.addItemDecoration(new SpaceItemDecoration(35));
