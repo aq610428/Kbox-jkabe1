@@ -13,4 +13,6 @@ public class Constants {
     public static final String LON = "lon";//车油惠
     public static final String OIL = "oil";//车油惠
     public static final String TOKEN = "token";//车油惠
+    public static String ADVER = "1";//区分权限
+    public static final String CATEGORYA = "3736cc5daf354098ab3ef3e33e581376";//车油惠
 }

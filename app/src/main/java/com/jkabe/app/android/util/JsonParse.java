@@ -14,6 +14,7 @@ import com.jkabe.app.android.bean.CartBean;
 import com.jkabe.app.android.bean.CommonalityModel;
 import com.jkabe.app.android.bean.EarlyInfo;
 import com.jkabe.app.android.bean.Electronic;
+import com.jkabe.app.android.bean.GoodBean;
 import com.jkabe.app.android.bean.HealthItemVO;
 import com.jkabe.app.android.bean.ImageInfo;
 import com.jkabe.app.android.bean.LatInfo;
@@ -53,13 +54,28 @@ public class JsonParse {
             jsonParse = new JsonParse();
         return jsonParse;
     }
+    public static GoodBean getgoodBean(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        GoodBean info = (GoodBean) JsonUtilComm.jsonToBean(jsonObject.toString(), GoodBean.class);
+        return info;
+    }
+
 
     public static AddressBean getAddressBeanJSON(JSONObject object) {
         JSONObject jsonObject = object.optJSONObject("result");
         AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonObject.toString(), AddressBean.class);
         return info;
     }
-
+    public static List<GoodBean> getGoodBeanJson(JSONObject object) {
+        List<GoodBean> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            GoodBean info = (GoodBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), GoodBean.class);
+            infos.add(info);
+        }
+        return infos;
+    }
 
     public static List<AddressBean> getAddressBeanJson(JSONObject object) {
         List<AddressBean> infos = new ArrayList<>();

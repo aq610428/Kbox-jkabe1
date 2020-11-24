@@ -24,6 +24,11 @@ import com.amap.api.location.DPoint;
 import com.amap.api.maps.model.LatLng;
 import com.jkabe.app.android.base.BaseApplication;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -40,7 +45,34 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * @version：1.0 2015/12/2 0002 10:41 weilai 发布
  */
 public final class SystemTools {
+    /*****设置图片宽度自适应****/
+    public static String getNewData(String data) {
+        String[] name = data.split("\"");
+        if (name != null && name.length > 0) {
+            LogUtils.e(name[1].replaceAll("\"", ""));
+            return name[1].replaceAll("\"", "");
+        }
+        return "";
+    }
 
+
+    public static String getNewDataView(String data, Activity activity) {
+        Document document = Jsoup.parse(data);
+        Elements pElements = document.select("p:has(img)");
+        for (Element pElement : pElements) {
+            pElement.attr("style", "text-align:center");
+            pElement.attr("max-width", String.valueOf(MeasureWidthUtils.getScreenWidth(activity) + "px"))
+                    .attr("height", "auto");
+        }
+        Elements imgElements = document.select("img");
+        for (Element imgElement : imgElements) {
+            //重新设置宽高
+            imgElement.attr("max-width", "100%")
+                    .attr("height", "auto");
+            imgElement.attr("style", "max-width:100%;height:auto");
+        }
+        return document.toString();
+    }
     /**
      * 隐藏键盘
      */

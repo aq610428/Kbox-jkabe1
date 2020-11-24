@@ -39,11 +39,29 @@ public interface Api {
     String GET_MOBILCODE = Config.getOpenNewApi() + "/member/getmembermobilevcode";
     int GET_MOBILCODE_ID = 100006;
 
+    //商品详情
+    String MallGood = Config.getOpenNewApi() + "/mall/getMallGoodsInfoById";
+    int MallGood_ID = 20004;
 
     String GET_UPDATE = Config.getOpenNewApi() + "/member/forgotmemberpassword";
     int GET_UPDATE_ID = 100005;
 
+    //关注
+    String PAY_ORDER_LOVE = Config.getOpenNewApi() + "/mall/saveMallGoodFollow";
+    int PAY_ORDER_LOVE_ID = 20015;
 
+    //取消关注
+    String PAY_REMOVE_LOVE = Config.getOpenNewApi() + "/mall/removeMallGoodFollow";
+    int PAY_REMOVE_LOVE_ID = 20016;
+
+
+    //加入购物车
+    String GOODD_MALL = Config.getOpenNewApi() + "/mall/saveMallShoppingInfo";
+    int GOODD_MALL_ID = 20002;
+
+    //取消关注
+    String PAY_REMOVE_ORDER = Config.getOpenNewApi() + "/mall/getMallOrderInfoById";
+    int PAY_REMOVE_ORDER_ID = 20017;
     /******版本更新******/
     String GET_INTERGRAL_VERSION = Config.getOpenNewApi() + "/app/getandroidversioninfo";
     int GET_INTERGRAL_VERSION_ID = 100028;
@@ -253,4 +271,12 @@ public interface Api {
     //收货地址列表
     String MallGood_ADDRESS_LIST = Config.getOpenNewApi() + "/member/queryMemberReceiveAddressInfoData";
     int MallGood_ADDRESS_LIST_ID = 20009;
+
+    //商品列表信息
+    String GOODDATA = Config.getOpenNewApi() + "/mall/queryMallGoodsInfoData";
+    int GOODDATA_ID = 20001;
+    //微信支付
+    String MallGood_PAY = Config.getOpenNewApi() + "/mall/gotoPayOrderInfo";
+    int MallGood_PAY_ID = 20006;
+
 }

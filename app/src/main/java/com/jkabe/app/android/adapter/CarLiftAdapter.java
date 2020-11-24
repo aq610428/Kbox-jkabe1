@@ -3,6 +3,7 @@ package com.jkabe.app.android.adapter;
 import com.jkabe.app.android.R;
 import com.jkabe.app.android.bean.LeftVo;
 import com.jkabe.app.android.glide.GlideUtils;
+import com.jkabe.app.android.ui.fragment.AspFragment;
 import com.jkabe.app.android.ui.fragment.CarLeftFragment;
 
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ import java.util.List;
  */
 public class CarLiftAdapter extends AutoRVAdapter {
     private List<LeftVo.ItemsBean> inventories = new ArrayList<>();
-    private CarLeftFragment fragment;
+    private AspFragment fragment;
 
-    public CarLiftAdapter(CarLeftFragment fragment, List<LeftVo.ItemsBean> inventories) {
+    public CarLiftAdapter(AspFragment fragment, List<LeftVo.ItemsBean> inventories) {
         super(fragment.getContext(), inventories);
         this.fragment = fragment;
         this.inventories = inventories;

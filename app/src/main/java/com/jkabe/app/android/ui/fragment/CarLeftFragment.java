@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.android.R;
-import com.jkabe.app.android.adapter.LeftAdapter;
 import com.jkabe.app.android.banner.Banner;
 import com.jkabe.app.android.banner.BannerConfig;
 import com.jkabe.app.android.banner.Transformer;
@@ -52,7 +51,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     private RecyclerView recyclerView;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
-    private LeftAdapter leftAdapter;
+//    private LeftAdapter leftAdapter;
     public UserInfo info;
 
     @Nullable
@@ -92,7 +91,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器，图片加载器在下方
         banner.setImageLoader(new MyLoader());
-        banner.setImages(banners);
+//        banner.setImages(banners);
         //设置轮播的动画效果，内含多种特效，可点入方法内查找后内逐一体验
         banner.setBannerAnimation(Transformer.Default);
         banner.setTitleView(true);
@@ -182,8 +181,8 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void setAdapter() {
-        leftAdapter = new LeftAdapter(this, voList);
-        recyclerView.setAdapter(leftAdapter);
+//        leftAdapter = new LeftAdapter(this, voList);
+//        recyclerView.setAdapter(leftAdapter);
     }
 
     @Override

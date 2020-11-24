@@ -18,10 +18,8 @@ import com.jkabe.app.android.config.NetWorkListener;
 import com.jkabe.app.android.config.okHttpModel;
 import com.jkabe.app.android.ui.fragment.AspFragment;
 import com.jkabe.app.android.ui.fragment.CarFragment;
-import com.jkabe.app.android.ui.fragment.CarLeftFragment;
 import com.jkabe.app.android.ui.fragment.CartFragment;
 import com.jkabe.app.android.ui.fragment.MineFragment;
-import com.jkabe.app.android.ui.fragment.RecordFragment;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.JsonParse;
 import com.jkabe.app.android.util.LogUtils;
@@ -37,9 +35,7 @@ import com.jkabe.app.android.weight.UpdateManager;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 import cn.jpush.android.api.JPushInterface;
