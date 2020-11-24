@@ -22,6 +22,7 @@ import com.jkabe.app.android.ui.fragment.MineFragment;
 import com.jkabe.app.android.ui.fragment.RecordFragment;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.JsonParse;
+import com.jkabe.app.android.util.LogUtils;
 import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.SystemTools;
@@ -64,6 +65,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         mTabHost = getView(R.id.mTabHost);
         queryPush();
         query();
+        LogUtils.e("0B8096547F540F5D1997AF9CFC3926B1".toLowerCase());
     }
 
     @Override

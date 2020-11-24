@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:paddingLeft="15dp"
                 android:text="版本更新"
                 android:textColor="#858585"

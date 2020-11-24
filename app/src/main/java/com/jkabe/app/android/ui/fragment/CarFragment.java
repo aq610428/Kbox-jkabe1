@@ -4,6 +4,7 @@ package com.jkabe.app.android.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -56,7 +57,6 @@ import com.jkabe.app.android.util.JsonParse;
 import com.jkabe.app.android.util.LogUtils;
 import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
-import com.jkabe.app.android.util.StatusBarUtil;
 import com.jkabe.app.android.util.SystemTools;
 import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
@@ -67,6 +67,7 @@ import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 import org.json.JSONObject;
 import java.util.Map;
+import crossoverone.statuslib.StatusUtil;
 
 /**
  * @author: zt
@@ -131,7 +132,8 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtil.setTranslucentStatus(getActivity());
+        StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
+        StatusUtil.setSystemStatus(getActivity(), false, true);
         polling();
     }
 
