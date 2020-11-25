@@ -37,9 +37,7 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.DialogUtils;
 import com.jkabe.app.android.wxapi.PayResult;
-
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 

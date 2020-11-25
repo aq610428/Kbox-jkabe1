@@ -101,8 +101,6 @@
             android:name=".ui.OrderDetileActivity1"
             android:screenOrientation="portrait" />
 
-
-
         <activity
             android:name=".ui.OrderPayActivity"
             android:screenOrientation="portrait" />
