@@ -35,7 +35,6 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.TypefaceUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.wxapi.PayResult;
-
 import org.json.JSONObject;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -345,8 +344,8 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                 } else {
                     ToastUtil.showToast("支付失败" + payResult);
                 }
-//                startActivity(new Intent(ConfirmActivity.this, OrderPayActivity.class));
-//                finish();
+                startActivity(new Intent(ConfirmActivity.this, OrderPayActivity.class));
+                finish();
             }
         }
 

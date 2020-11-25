@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.jkabe.app.android.R;
+import com.jkabe.app.android.ui.OrderPayActivity;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.LogUtils;
 import com.jkabe.app.android.util.ToastUtil;
+import com.jkabe.app.android.weight.ActivityTaskManager;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -54,6 +56,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     result=2;
                     break;
                 case -1:
+                    LogUtils.e("签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等。" + resp.errCode);
                     ToastUtil.showToast("签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等。");
                     result=1;
                     break;
@@ -62,10 +65,10 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     result=1;
                     break;
             }
-//            Intent intent = new Intent(this, OrderPayActivity.class);
-//            intent.putExtra("position", result);
-//            startActivity(intent);
-//            ActivityTaskManager.removeActivity("ConfirmActivity");
+            Intent intent = new Intent(this, OrderPayActivity.class);
+            intent.putExtra("position", result);
+            startActivity(intent);
+            ActivityTaskManager.removeActivity("ConfirmActivity");
             finish();
         }
     }

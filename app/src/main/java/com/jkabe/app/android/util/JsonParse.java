@@ -19,10 +19,13 @@ import com.jkabe.app.android.bean.HealthItemVO;
 import com.jkabe.app.android.bean.ImageInfo;
 import com.jkabe.app.android.bean.LatInfo;
 import com.jkabe.app.android.bean.LeftVo;
+import com.jkabe.app.android.bean.LocgistBean;
 import com.jkabe.app.android.bean.Money;
 import com.jkabe.app.android.bean.OdbAndLocationVO;
 import com.jkabe.app.android.bean.Oil;
+import com.jkabe.app.android.bean.OrderBean;
 import com.jkabe.app.android.bean.OrderInfo;
+import com.jkabe.app.android.bean.OrderVo;
 import com.jkabe.app.android.bean.PackageBean;
 import com.jkabe.app.android.bean.PayBean;
 import com.jkabe.app.android.bean.StoreInfo;
@@ -59,7 +62,32 @@ public class JsonParse {
         GoodBean info = (GoodBean) JsonUtilComm.jsonToBean(jsonObject.toString(), GoodBean.class);
         return info;
     }
+    public static List<OrderBean> getOrderBeanJSON(JSONObject object) {
+        List<OrderBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            OrderBean info = (OrderBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), OrderBean.class);
+            infos.add(info);
+        }
 
+        return infos;
+    }
+
+    public static List<LocgistBean> getLocgistBeanJSON(JSONObject object) {
+        List<LocgistBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            LocgistBean info = (LocgistBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), LocgistBean.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static OrderVo getorderBean(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        OrderVo info = (OrderVo) JsonUtilComm.jsonToBean(jsonObject.toString(), OrderVo.class);
+        return info;
+    }
 
     public static AddressBean getAddressBeanJSON(JSONObject object) {
         JSONObject jsonObject = object.optJSONObject("result");

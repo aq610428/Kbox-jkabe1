@@ -12,9 +12,13 @@ import android.os.Message;
 import com.alipay.sdk.app.PayTask;
 import com.jkabe.app.android.bean.PayBean;
 import com.jkabe.app.android.ui.ConfirmActivity;
+import com.jkabe.app.android.ui.OrderDetileActivity;
+import com.jkabe.app.android.ui.fragment.AllFragment;
+import com.jkabe.app.android.ui.fragment.PayFragment;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
 import java.util.List;
 import java.util.Map;
 
@@ -46,8 +50,78 @@ public class PayUtils {
         }
     }
 
+    public static void AliPay(PayFragment fragment, Handler mHandler, String orderInfo) {
+        if (!isAliPayInstalled(fragment.getActivity())) {
+            ToastUtil.showToast("您未安装支付宝，请安装后再试~");
+            return;
+        }
+        final Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(fragment.getActivity());
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                LogUtils.i("支付结果result=" + result.toString());
+                Message msg = new Message();
+                msg.what = fragment.SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+    public static void AliPay(AllFragment fragment, Handler mHandler, String orderInfo) {
+        if (!isAliPayInstalled(fragment.getActivity())) {
+            ToastUtil.showToast("您未安装支付宝，请安装后再试~");
+            return;
+        }
+        final Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(fragment.getActivity());
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                LogUtils.i("支付结果result=" + result.toString());
+                Message msg = new Message();
+                msg.what = fragment.SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
 
     public static void AliPay(ConfirmActivity activity, Handler mHandler, String orderInfo) {
+        if (!isAliPayInstalled(activity)) {
+            ToastUtil.showToast("您未安装支付宝，请安装后再试~");
+            return;
+        }
+        final Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(activity);
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                LogUtils.i("支付结果result=" + result.toString());
+                Message msg = new Message();
+                msg.what = activity.SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+
+    public static void AliPay(OrderDetileActivity activity, Handler mHandler, String orderInfo) {
         if (!isAliPayInstalled(activity)) {
             ToastUtil.showToast("您未安装支付宝，请安装后再试~");
             return;

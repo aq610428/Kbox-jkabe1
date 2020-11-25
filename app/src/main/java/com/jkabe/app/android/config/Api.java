@@ -5,6 +5,11 @@ public interface Api {
     String GET_MOBILE = Config.getOpenNewApi() + "/member/getregistermembermobilevcode";
     int GET_MOBILE_ID = 100001;
 
+    //查看物流
+    String PAY_REMOVE_EXO = Config.getOpenNewApi() + "/mall/getExpressList";
+    int PAY_REMOVE_EXO_ID = 20021;
+
+
     /******注册******/
     String GET_REGISTER = Config.getOpenNewApi() + "/member/memberregister";
     int GET_REGISTER_ID = 100002;
@@ -13,12 +18,30 @@ public interface Api {
     String GET_ADVERT = Config.getOpenNewApi() + "/resource/getadvertlist";
     int GET_ADVERT_ID = 100003;
 
+    //取消关注
+    String PAY_REMOVE_DELETE = Config.getOpenNewApi() + "/mall/removeMallOrderInfo";
+    int PAY_REMOVE_DELETE_ID = 20018;
+
+    //催发货
+    String PAY_REMOVE_GOOD = Config.getOpenNewApi() + "/mall/pressToSendGoods";
+    int PAY_REMOVE_GOOD_ID = 20019;
+
+    //确认收货
+    String PAY_REMOVE_GOODS = Config.getOpenNewApi() + "/mall/comfirmToSendGoods";
+    int PAY_REMOVE_GOODS_ID = 20020;
+
     /******车生活三方服务列表信息******/
     String GET_ADVERT_TAG = Config.getOpenNewApi() + "/resource/gettaglist";
     int GET_ADVERT_TAG_ID = 100004;
     //加入购物车
     String GOODD_MALL_QUERY = Config.getOpenNewApi() + "/mall/queryMallShoppingData";
     int GOODD_MALL_QUERY_ID = 20003;
+
+
+
+    //订单列表
+    String MallGood_ORDER_LIST = Config.getOpenNewApi() + "/mall/queryMallOrderInfoData";
+    int MallGood_ORDER_LIST_ID = 20010;
 
     /******虚拟货币列表******/
     String GET_COINS_LIST = Config.getOpenNewApi() + "/integral/getcoins";
