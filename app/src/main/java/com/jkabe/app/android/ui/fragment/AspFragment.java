@@ -6,20 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.android.R;
 import com.jkabe.app.android.adapter.MeAdapter;
 import com.jkabe.app.android.adapter.WareAdapter;
-import com.jkabe.app.android.adapter.WareAdapter2;
 import com.jkabe.app.android.banner.Banner2;
 import com.jkabe.app.android.banner.BannerConfig;
 import com.jkabe.app.android.banner.Transformer;
@@ -42,9 +38,7 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.MyLoader;
 import com.jkabe.app.android.weight.SpaceItemDecoration;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
