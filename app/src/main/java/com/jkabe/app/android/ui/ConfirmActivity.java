@@ -341,7 +341,6 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                 String resultStatus = payResult.getResultStatus();
                 // 判断resultStatus 为9000则代表支付成功
                 if (TextUtils.equals(resultStatus, "9000")) {
-                    // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     ToastUtil.showToast("支付成功");
                 } else {
                     ToastUtil.showToast("支付失败" + payResult);
