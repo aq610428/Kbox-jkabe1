@@ -32,6 +32,7 @@ import com.jkabe.app.android.weight.DialogUtils;
 import com.jkabe.app.android.weight.PreferenceUtils;
 import com.jkabe.app.android.weight.RuntimeRationale;
 import com.jkabe.app.android.weight.UpdateManager;
+import com.tencent.bugly.beta.Beta;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -63,7 +64,6 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         mTabHost = getView(R.id.mTabHost);
         queryPush();
         query();
-        LogUtils.e("0B8096547F540F5D1997AF9CFC3926B1".toLowerCase());
     }
 
     @Override
@@ -209,6 +209,13 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.RESET_TOKEN, params, Api.RESET_TOKEN_ID, this);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Beta.checkUpgrade(false, true);
+    }
+
 
 
     @Override

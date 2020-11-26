@@ -39,7 +39,6 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.NoDataView;
 import com.jkabe.app.android.wxapi.PayResult;
-
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
@@ -233,9 +232,7 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
         ;
     };
 
-
     private int pay = 1;
-
     public void showTip(OrderBean orderBean) {
         final Dialog dialog = new Dialog(getContext(), R.style.dialog_bottom_full);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout_pay, null);

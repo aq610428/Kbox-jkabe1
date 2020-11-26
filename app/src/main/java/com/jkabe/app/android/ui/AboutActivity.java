@@ -22,6 +22,7 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.RuntimeRationale;
 import com.jkabe.app.android.weight.UpdateManager;
+import com.tencent.bugly.beta.Beta;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -69,6 +70,7 @@ public class AboutActivity extends BaseActivity implements NetWorkListener {
                 finish();
                 break;
             case R.id.rl_edition:
+                Beta.checkUpgrade();
                 query();
                 break;
             case R.id.rl_tab1:

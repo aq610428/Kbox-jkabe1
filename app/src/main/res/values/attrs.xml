@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <declare-styleable name="MultiGroupHistogramView">
         <attr name="coordinateAxisWidth" format="dimension" />
         <attr name="coordinateAxisColor" format="color" />
@@ -95,6 +94,7 @@
         <!--下面是否显示阴影-->
         <attr name="yc_bottomShow" format="boolean" />
     </declare-styleable>
+
     <declare-styleable name="Banner">
         <attr name="delay_time" format="integer" />
         <attr name="scroll_time" format="integer" />
@@ -122,7 +122,5 @@
             <enum name="fit_xy" value="6" />
             <enum name="matrix" value="7" />
         </attr>
-        <!--<attr name="indicator_animator" format="reference" />-->
-        <!--<attr name="indicator_animator_reverse" format="reference" />-->
     </declare-styleable>
 </resources>
