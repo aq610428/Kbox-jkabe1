@@ -27,7 +27,7 @@ public class Constants {
         List<Block> blocks = new ArrayList<>();
         blocks.add(new Block("数码电器", R.mipmap.ic_television_3));
         blocks.add(new Block("食品粮油", R.mipmap.ic_television_2));
-        blocks.add(new Block("服饰箱包", R.mipmap.ic_television_1));
+        blocks.add(new Block("服饰潮流", R.mipmap.ic_television_1));
         blocks.add(new Block("钟表珠宝", R.mipmap.ic_television_4));
         blocks.add(new Block("日用百货", R.mipmap.ic_television_5));
         return blocks;

@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +32,7 @@ import com.jkabe.app.android.config.Api;
 import com.jkabe.app.android.config.NetWorkListener;
 import com.jkabe.app.android.config.okHttpModel;
 import com.jkabe.app.android.ui.PreviewActivity;
+import com.jkabe.app.android.ui.SearchActivity;
 import com.jkabe.app.android.ui.WareDeilActivity;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.JsonParse;
@@ -48,7 +52,7 @@ import java.util.Map;
  * @date: 2020/11/24
  * @name:AspFragment
  */
-public class AspFragment extends BaseFragment implements OnBannerListener, NetWorkListener, OnRefreshListener, OnLoadMoreListener {
+public class AspFragment extends BaseFragment implements OnBannerListener, NetWorkListener, OnRefreshListener, OnLoadMoreListener, View.OnClickListener {
     private View rootView;
     private Banner2 banner;
     private SwipeToLoadLayout swipeToLoadLayout;
@@ -61,6 +65,7 @@ public class AspFragment extends BaseFragment implements OnBannerListener, NetWo
     private int limit = 10000;
     private boolean isRefresh;
     private MeAdapter adapter;
+    private TextView et_search;
 
 
     @Nullable
@@ -82,10 +87,13 @@ public class AspFragment extends BaseFragment implements OnBannerListener, NetWo
 
 
     private void initView() {
+        et_search = getView(rootView, R.id.et_search);
         recyclerView1 = getView(rootView, R.id.recyclerView1);
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         recyclerView = getView(rootView, R.id.recyclerView);
         banner = getView(rootView, R.id.banner);
+        et_search.setOnClickListener(this);
+
         swipeToLoadLayout.setOnLoadMoreListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
 
@@ -260,4 +268,12 @@ public class AspFragment extends BaseFragment implements OnBannerListener, NetWo
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.et_search:
+               startActivity(new Intent(getContext(), SearchActivity.class));
+                break;
+        }
+    }
 }

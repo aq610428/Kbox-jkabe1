@@ -43,17 +43,8 @@
                         android:background="@mipmap/ic_bg_main"
                         android:scaleType="fitXY" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="32dp"
-                        android:paddingLeft="12dp"
-                        android:paddingRight="14dp"
-                        android:src="@mipmap/ic_warning" />
 
-
-                    <EditText
+                    <TextView
                         android:id="@+id/et_search"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -65,6 +56,7 @@
                         android:drawableLeft="@mipmap/ic_route"
                         android:drawablePadding="5dp"
                         android:hint="iphone"
+                        android:gravity="center|left"
                         android:paddingLeft="15dp"
                         android:textCursorDrawable="@drawable/edit_cursor_color"
                         android:textSize="@dimen/ctv_sizen_13" />
