@@ -6,14 +6,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.android.R;
+import com.jkabe.app.android.adapter.LeftAdapter;
 import com.jkabe.app.android.banner.Banner;
+import com.jkabe.app.android.banner.Banner2;
 import com.jkabe.app.android.banner.BannerConfig;
 import com.jkabe.app.android.banner.Transformer;
 import com.jkabe.app.android.banner.listener.OnBannerListener;
@@ -32,10 +36,13 @@ import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.MyLoader;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 
@@ -46,13 +53,12 @@ import crossoverone.statuslib.StatusUtil;
  */
 public class CarLeftFragment extends BaseFragment implements View.OnClickListener, OnBannerListener, NetWorkListener, OnRefreshListener {
     private View rootView;
-    private Banner banner;
+    private Banner2 banner;
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView recyclerView;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
-//    private LeftAdapter leftAdapter;
-    public UserInfo info;
+    private LeftAdapter leftAdapter;
 
     @Nullable
     @Override
@@ -91,7 +97,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器，图片加载器在下方
         banner.setImageLoader(new MyLoader());
-//        banner.setImages(banners);
+        banner.setImages(banners);
         //设置轮播的动画效果，内含多种特效，可点入方法内查找后内逐一体验
         banner.setBannerAnimation(Transformer.Default);
         banner.setTitleView(true);
@@ -106,7 +112,6 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
                 //必须最后调用的方法，启动轮播图。
                 .start();
     }
-
 
 
     @Override
@@ -136,8 +141,6 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_ADVERT_TAG, params, Api.GET_ADVERT_TAG_ID, this);
     }
-
-
 
 
     /******查询个人资料*****/
@@ -170,7 +173,8 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
                         }
                         break;
                     case Api.GET_MEID_USER_ID:
-                        info = JsonParse.getUserInfo(object);
+                        UserInfo info = JsonParse.getUserInfo(object);
+                        SaveUtils.saveInfo(info);
                         break;
 
                 }
@@ -181,8 +185,8 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void setAdapter() {
-//        leftAdapter = new LeftAdapter(this, voList);
-//        recyclerView.setAdapter(leftAdapter);
+        leftAdapter = new LeftAdapter(this, voList);
+        recyclerView.setAdapter(leftAdapter);
     }
 
     @Override

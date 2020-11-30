@@ -17,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -65,8 +67,11 @@ import com.jkabe.app.android.weight.RuntimeRationale;
 import com.jkabe.app.android.weight.SensorEventHelper;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
+
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -107,7 +112,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
 
     private void request() {
-        AndPermission.with(this).runtime().permission(Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE)
+        AndPermission.with(this).runtime().permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE)
                 .rationale(new RuntimeRationale())
                 .onGranted(permissions -> setUpMap())
                 .onDenied(permissions -> {
@@ -164,7 +169,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setOnMarkerClickListener(this);
     }
-
 
 
     @Override
@@ -273,6 +277,9 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
     private void qurycar() {
+        if (SaveUtils.getCar() == null && Utility.isEmpty(SaveUtils.getCar().getImeicode())) {
+            return;
+        }
         String sign = "imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
@@ -314,7 +321,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             try {
                 aMap.clear();
                 rl_edition.setVisibility(View.VISIBLE);
-                LatLng latLng=SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
+                LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
                 PreferenceUtils.setPrefString(getContext(), Constants.LAT, BigDecimalUtils.subLastBit(latLng.latitude, 6).doubleValue() + "");
                 PreferenceUtils.setPrefString(getContext(), Constants.LON, BigDecimalUtils.subLastBit(latLng.longitude, 6).doubleValue() + "");
                 MarkerOptions markerOption = new MarkerOptions();
@@ -335,7 +342,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             }
         }
     }
-
 
 
     private void updateView() {
@@ -381,7 +387,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout_user, null);
         EditText et_name = view.findViewById(R.id.et_name);
         et_name.setHint("请输入油价");
-        et_name.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        et_name.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {

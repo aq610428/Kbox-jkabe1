@@ -33,7 +33,7 @@
                 android:orientation="vertical"
                 android:paddingTop="10dp">
 
-                <com.jkabe.app.android.banner.Banner
+                <com.jkabe.app.android.banner.Banner2
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"

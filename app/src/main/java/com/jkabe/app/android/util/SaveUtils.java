@@ -4,6 +4,7 @@ import com.jkabe.app.android.bean.CarInfo;
 import com.jkabe.app.android.bean.UserInfo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author: zt
@@ -22,6 +23,17 @@ public class SaveUtils {
     public static UserInfo getSaveInfo() {
         UserInfo userInfo = (UserInfo) CacheDiskUtils.getInstance().getSerializable("userInfo");
         return userInfo;
+    }
+
+    /******搜索关键字保存*****/
+    public static List<String> getKey() {
+        List<String> list = (List<String>) CacheDiskUtils.getInstance().getSerializable("key");
+        return list;
+    }
+
+    public static void saveKey(List<String> list) {
+        CacheDiskUtils cacheDiskUtils = CacheDiskUtils.getInstance();
+        cacheDiskUtils.put("key", (Serializable) list);
     }
 
 

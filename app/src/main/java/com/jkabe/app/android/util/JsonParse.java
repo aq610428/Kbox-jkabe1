@@ -246,7 +246,6 @@ public class JsonParse {
 
 
     public static StoreInfo getStoreDeilJson(JSONObject object) {
-        List<StoreInfo> infos = new ArrayList<>();
         JSONObject jsonObject = object.optJSONObject("result");
         JSONObject jsonArray = jsonObject.optJSONObject("storeInfo");
         StoreInfo info = (StoreInfo) JsonUtilComm.jsonToBean(jsonArray.toString(), StoreInfo.class);

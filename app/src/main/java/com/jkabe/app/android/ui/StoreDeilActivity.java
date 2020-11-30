@@ -63,7 +63,6 @@ import java.util.Map;
 public class StoreDeilActivity extends BaseActivity implements NetWorkListener, OnBannerListener {
     private TextView title_left_btn, title_right_btn, text_store, text_distance, text_address, text_mobile, text_date, text_keep, text_wash, text_repair;
     private TextView text_mobile_cal, text_order;
-    private UserInfo info;
     private StoreInfo storeInfo;
     private Banner1 banner;
     private List<ImageInfo> banners = new ArrayList<>();
@@ -74,7 +73,6 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_store_deil);
         BaseApplication.activityTaskManager.putActivity("StoreActivity", this);
-        info = SaveUtils.getSaveInfo();
     }
 
 
@@ -223,11 +221,14 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
     }
 
     private void bindQury() {
-        String sign = "memberId=" + info.getId() + "&partnerid=" + Constants.PARTNERID + "&storeId=" + storeInfo.getId() + Constants.SECREKEY;
+        if (storeInfo==null){
+            return;
+        }
+        String sign = "memberId=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&storeId=" + storeInfo.getId() + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
-        params.put("memberId", info.getId() + "");
+        params.put("memberId", SaveUtils.getSaveInfo().getId() + "");
         params.put("storeId", storeInfo.getId() + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
@@ -293,10 +294,15 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
                         finish();
                         break;
                     case Api.GET_UNMODEL_INFO_ID:
-                        storeInfo = JsonParse.getStoreDeilJson(object);
-                        if (storeInfo != null) {
-                            setView();
+                        if (object.isNull("result")){
+                            ToastUtil.showToast(commonality.getErrorDesc());
+                        }else{
+                            storeInfo = JsonParse.getStoreDeilJson(object);
+                            if (storeInfo != null) {
+                                setView();
+                            }
                         }
+
                         break;
                     case Api.GET_ORDER_VERSION_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
@@ -404,8 +410,6 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
                 mPopupWindow.dismiss();
             }
         });
-
-
         mPopupWindow.setTouchable(true);
         mPopupWindow.setFocusable(true);
         mPopupWindow.setOutsideTouchable(true);
